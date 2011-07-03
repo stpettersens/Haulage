@@ -1,0 +1,8 @@
+{
+	"dependency": [
+		{ "name": "json_simple" },
+		{ "version": "1.1" },
+		{ "http-get": "http://code.google.com/p/json-simple/downloads/detail?name=json_simple-1.1.jar" },
+		{ "apt-get": "json_simple" }
+	]
+}
