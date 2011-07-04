@@ -3,7 +3,9 @@ Haulage
 
 Haulage is a dependency manager for source code.
 It can "intelligently" retrieve dependencies defined in
-a JSON-based dependencies file (e.g. *project.deps*.)
+a JSON-based dependencies file (e.g. *project.deps*.) It 
+supports retrieval through the [APT](http://en.wikipedia.org/wiki/Advanced_Packaging_Tool)
+package manager as well as standard HTTP (on Debian-based systems).
 
 Haulage usage
 -----
