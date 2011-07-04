@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<!-- 
+	Gaudi project website X/HTML
+	Copyright (c) 2011 Sam Saint-Pettersen. -->
+  <head>
+  <title>Dependencies for Gaudi</title>
+  <script type="text/javascript" src="jquery-1.6.min.js"></script>
+  <script type="text/javascript" src="gaudi.js"></script>
+ 	<link type="text/css" rel="stylesheet" href="gaudi.css"/>
+  <meta http-equiv="content-type" content="application/xhtml+xml; charset=ISO-8859-1"/>
+  	</head>
+  	<body onload="onLoad();" class="largeText">
+    <a href="index.html">Gaudi</a> depends on the following...
+    <div id="deps_box_1">
+    <!-- Dependencies for Gaudi application -->
+    <h3>Tools &amp; Runtimes</h3>
+    <small>(Necessary to build from source without using Gaudi itself
+    <br/> or run Gaudi itself)</small>
+    <ul>
+    <li class="alt"><a name="python"></a>
+    Python or <a class="extern" href="http://www.perl.org">Perl</a><br/><small>(python 2.7+ - recommended: 
+    <a class="extern" href="http://www.python.org">CPython</a>
+    or <a class="extern" href="http://pypy.org">PyPy</a>)
+    <br/>
+    (perl 5.10+)
+    </small>
+    </li>
+    <li class="alt"><a name="txtrevise"></a>
+    <a class="extern" href="http://github.com/stpettersens/txtrevise">
+    Txtrevise</a><br/><small>(txtrevise 1.1)</small>
+    </li>
+    <li class="alt"><a name="ant"></a>
+    <a class="extern" href="http://ant.apache.org">
+    Apache Ant</a><br/><small>(apache ant 1.8+)</small>
+    </li>
+    <li class="alt"><a name="scala"></a>
+    <a class="extern" href="http://www.scala-lang.org">
+    Scala</a><br/><small>(scala distribution 2.9.0.1)</small>
+    </li>
+    <li class="alt"><a name="jre"></a>
+    Java Runtime Environment (JRE)<br/>
+    <small>(recommended: 
+    <a class="extern" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">HotSpot JRE</a>,
+    <a class="extern" href="http://openjdk.java.net">OpenJDK JRE</a> or 
+    <a class="extern" href="http://gcc.gnu.org/java">GNU GIJ</a>)</small>
+    </li>
+    <li class="alt"><a name="jdk"></a>
+    Java Development Kit (JDK)<br/>
+    <small>(recommended: 
+    <a class="extern" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle JDK</a> 
+    or <a class="extern" href="http://openjdk.java.net">OpenJDK JDK</a> or
+    <a class="extern" href="http://gcc.gnu.org/java">GNU GCJ</a>)</small>
+    </li>
+    </ul>
+
+    <h3>Libraries</h3>
+    <small>(Necessary to both build and run Gaudi)</small>
+    <ul>
+      <li class="alt"><a name="json.simple"></a>
+      <a class="extern" href="http://code.google.com/p/json-simple">
+		JSON.simple</a><br/><small>(json_simple-1.1.jar)</small>
+      </li>
+	  <li class="alt"><a name="commons-io"></a>
+		<a class="extern" href="http://commons.apache.org/io">
+		Apache Commons IO</a><br/><small>(commons-io-2.0.1.jar)</small>
+	  </li>
+	  <li class="alt">
+		Scala library<br/><small>(scala-library.jar 2.9.0.1)</small>
+	  </li>
+	  <li class="alt"><a name="groovy"></a>
+		<a class="extern" href="http://groovy.codehaus.org">
+		Groovy library</a><br/><small>(groovy-all-1.8.0.jar)</small>
+	  </li>
+	  <li class="alt"><a name="jython"></a>
+		<a class="extern" href="http://www.jython.org">
+		Jython (minimal core library)</a><br/><small>(jython.jar 2.5.2)</small>
+	  </li>
+    <li class="alt"><a name="java-gnome"></a>
+		<a class="extern" href="http://java-gnome.sourceforge.net">
+		java-gnome</a><br/><small>(gtk-4.0.jar &amp; native library)</small>
+	  </li>
+    </ul>
+	</div>
+  </body>
+  </html>
