@@ -7,7 +7,6 @@
 #
 require 'rubygems'
 require 'json'
-require 'hashie/hash'
 require 'open-uri'
 require 'mongo'
 
