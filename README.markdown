@@ -35,6 +35,7 @@ Programs:
 
 The following Ruby gems:
 
+* haul [core of haulage, included]
 * [json](http://rubygems.org/gems/json)
 * [mongo](http://rubygems.org/gems/mongo)
 * bison-ext
