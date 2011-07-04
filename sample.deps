@@ -1,8 +1,19 @@
 {
-	"dependency": [
-		{ "name": "json_simple" },
-		{ "version": "1.1" },
-		{ "http-get": "http://code.google.com/p/json-simple/downloads/detail?name=json_simple-1.1.jar" },
-		{ "apt-get": "json_simple" }
+
+	"preamble": [
+		{ "count": 2 },
+		{ "dir": "lib" }
+	],
+
+	"dependency1": [
+		{ "file": "txtrevise" },
+		{ "http-get": "http://www.something.com" },
+		{ "apt-get": "txtrevise" }
+	],
+
+	"dependency2": [
+		{ "file": "json_simple-1.1.jar" },
+		{ "http-get": "http://json-simple.googlecode.com/files/json_simple-1.1.jar" },
+		{ "apt-get": "N/A" }
 	]
 }

@@ -1,5 +1,5 @@
 # 
-# Haul module.
+# Haul module.N/A
 # Haulage source code manager.
 # Copyright (c) 2011 Sam Saint-Pettersen.
 #
@@ -7,12 +7,13 @@
 #
 require 'rubygems'
 require 'json'
-require 'net/http'
+require 'hashie/hash'
+require 'open-uri'
 require 'mongo'
 
 # Globals
 $version = '1.0'
-$depfile = nil
+$deps = []
 
 # Database access configuration
 # Temporary. This will be recorded to a config file.
@@ -24,34 +25,34 @@ module Haul
 	def self.version()
 		return $version
 	end
-	def self.pull(depfile)
-		self.parseDeps(depfile)
+	def self.pull(depfile, quiet)
 		puts "Pulling dependencies defined in #{depfile}..."
-		return depfile
-	end
-	def self.push(depfile)
 		self.parseDeps(depfile)
+		#self.pullOverHttp()
+		self.pullOverAptGet()
+	end
+	def self.push(depfile, quiet)
 		puts "Pushing dependencies defined in #{depfile}..."
-		return depfile
+		self.parseDeps(depfile)
+		self.pushToDB()
 	end
 	private
 	def self.parseDeps(depfile) 
-		$deps = depfile
+		json = File.read(depfile)
+		deps = JSON.parse(json)
+		$deps = deps['dependency1']
 	end
 	def self.pullOverHttp()
-		Net::HTTP.start(url) { |http|
-			resp = http.get(dlUrl)
-			open(dlFile, 'wb') { |file|
-				file.write(resp.body)
-			}
-		}
-		puts "Retrieved \"#{dlFile}\" via Http."
+		dlfile = open("#{$deps[0]['file']}", 'wb')
+		dlfile.write(open("#{$deps[1]['http-get']}").read)
+		dlfile.close
+		puts "Retrieved \"#{$deps[0]['file']}\" via Http."
 	end
 	def self.pullOverAptGet()
-		system("sudo apt-get install #{dlFile}")
-		puts "Retrieved \"#{dlFile}\" via Apt-Get."
+		system("sudo apt-get install #{$deps[2]['apt-get']}")
+		puts "Retrieved \"#{$deps[0]['file']}\" via Apt-Get."
 	end
-	def self.connectToDB()
+	def self.pushToDB()
 		#...
 	end
 end

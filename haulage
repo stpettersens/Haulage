@@ -12,6 +12,7 @@ require './haul'
 
 # Globals
 $version = '1.0'
+$quiet = false
 
 def main()
 	options = {}
@@ -29,9 +30,10 @@ def main()
 		opts.on('-v', '--version', 'Display version information and exit.') do
 			showVersion()
 		end
-		options[:quiet] = false
+		options[:silent] = false
 		opts.on('-s', '--silent', 'Perform the task silenty. (No output).') do
-			options[:quiet] = true
+			options[:silent] = true
+			$quiet = options[:silent]
 		end
 		options[:pull] = nil
 		opts.on('-p', '--pull FILE.DEPS', 'Pull dependencies from FILE.DEPS.') do|file|
@@ -44,17 +46,13 @@ def main()
 			pushDeps(options[:push])
 		end
 	end
-	# Parse arguments and remove them from ARGV array
-	begin
-		optparse.parse!
-	rescue
-		throwError("Invalid options specified")
-	end
+	# Parse any arguments.
+	optparse.parse!
 end
 
 def pullDeps(depfile)
 	if isFile(depfile)
-		r = Haul.pull(depfile)
+		r = Haul.pull(depfile, $quiet)
 	else
 		badFile(depfile)
 	end
@@ -62,7 +60,7 @@ end
 
 def pushDeps(depfile)
 	if isFile(depfile)
-		r = Haul.push(depfile)
+		r = Haul.push(depfile, $quiet)
 	else 
 		badFile(depfile)
 	end
