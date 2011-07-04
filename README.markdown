@@ -1,11 +1,12 @@
 Haulage
 ======
 
-Haulage is a dependency manager for source code.
+Haulage is a dependency manager for source code, written in Ruby.
+
 It can "intelligently" retrieve dependencies defined in
-a JSON-based dependencies file (e.g. *project.deps*.) It 
+a JSON-based dependencies file (e.g. *haul.deps*.) It 
 supports retrieval through the [APT](http://en.wikipedia.org/wiki/Advanced_Packaging_Tool)
-package manager as well as standard HTTP (on Debian-based systems).
+package manager (Debian systems) as well as standard HTTP and naturally [Ruby Gems](http://rubygems.org).
 
 Haulage usage
 -----
@@ -24,7 +25,7 @@ The same effect as in the Haulage usage example can be achieved in Python code w
     import haul
 	haul.pull()
 
-(*project.deps* is the defaultly seeked depedencies file.)
+(*haul.deps* is the defaultly seeked depedencies file.)
 
 Dependencies
 ------------
