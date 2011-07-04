@@ -21,9 +21,8 @@ own scripts or programs. API modules exist for Python and Perl [WIP] as well as 
 
 The same effect as in the Haulage usage example can be achieved in Python code with:
 
-`import haul`
-
-`haul.pull()`
+    import haul
+	haul.pull()
 
 (*project.deps* is the defaultly seeked depedencies file.)
 
