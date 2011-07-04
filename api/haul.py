@@ -17,7 +17,7 @@ def init():
 
 def version():
 	out = __callHaul('version()')
-	print out
+	print "haul module v.{0} [via Python].".format(out[0])
 
 def pull(depfile='project.deps', quiet=False):
 	out = __callHaul('pull(\'{0}\', false)'.format(depfile))
