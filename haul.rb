@@ -1,5 +1,5 @@
 # 
-# Haul module.N/A
+# Haul module.
 # Haulage source code manager.
 # Copyright (c) 2011 Sam Saint-Pettersen.
 #
@@ -14,6 +14,8 @@ require 'mongo'
 # Globals
 $version = '1.0'
 $deps = []
+$libdir = nil
+$quiet = false
 
 # Database access configuration
 # Temporary. This will be recorded to a config file.
@@ -26,33 +28,70 @@ module Haul
 		return $version
 	end
 	def self.pull(depfile, quiet)
-		puts "Pulling dependencies defined in #{depfile}..."
-		self.parseDeps(depfile)
-		#self.pullOverHttp()
-		self.pullOverAptGet()
+		$quiet = quiet
+		if not $quiet
+			puts "Pulling dependencies defined in #{depfile}..."
+		end
+		self.parseDeps(depfile, 1)
+
 	end
 	def self.push(depfile, quiet)
-		puts "Pushing dependencies defined in #{depfile}..."
-		self.parseDeps(depfile)
-		self.pushToDB()
+		$quiet = quiet
+		if not $quiet
+			puts "Pushing dependencies defined in #{depfile}..."
+		end
+		self.parseDeps(depfile, 2)
 	end
 	private
-	def self.parseDeps(depfile) 
+	def self.parseDeps(depfile, signal) 
 		json = File.read(depfile)
-		deps = JSON.parse(json)
-		$deps = deps['dependency1']
+		parsed = JSON.parse(json)
+		preamble = parsed['preamble']
+		count = preamble[0]['count'].to_i
+		if not $quiet
+			puts "Requesting #{count} dependencies..."
+		end
+		c = 1
+		while c <= count
+			index = "dependency#{c}"
+			$deps = []
+			$deps = parsed[index]
+			if signal == 1
+				self.pullOverHttp()
+			elsif signal == 2
+				self.pushToDB()
+			else
+				if not $quiet
+					puts "Skipping dependency: #{deps[0]['file']}..."
+				end
+			end
+			c = c + 1
+		end
 	end
 	def self.pullOverHttp()
 		dlfile = open("#{$deps[0]['file']}", 'wb')
-		dlfile.write(open("#{$deps[1]['http-get']}").read)
+		dlfile.write(open("#{$deps[2]['http-get']}").read)
 		dlfile.close
-		puts "Retrieved \"#{$deps[0]['file']}\" via Http."
+		if not $quiet
+			puts "Retrieved \"#{$deps[0]['file']}\" via Http."
+		end
 	end
 	def self.pullOverAptGet()
-		system("sudo apt-get install #{$deps[2]['apt-get']}")
-		puts "Retrieved \"#{$deps[0]['file']}\" via Apt-Get."
+		system("sudo apt-get install #{$deps[3]['apt-get']}")
+		if not $quiet
+			puts "Retrieved \"#{$deps[0]['file']}\" via Apt-Get."
+		end
 	end
 	def self.pushToDB()
 		#...
+	end
+	def self.performChecks()
+		return 'an array'
+	end
+	def self.detectSystem()
+		return 'an os family'
+	end
+	def self.checkExists(file, type)
+		return false
 	end
 end
