@@ -24,7 +24,7 @@ DB_PWD = '<encrypted pwd>'
 
 module Haul
 	def self.version()
-		return $version
+		return "haul module v. #{$version}."
 	end
 	def self.pull(depfile, quiet)
 		$quiet = quiet

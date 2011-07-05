@@ -8,24 +8,39 @@
 use strict;
 use warnings;
 
-# Globals
-my $haul;
-
 sub init {
-	print "Initialized haul module."
-	open $haul, "| ruby haulapi.rb" || die "Error: Cannot run 'ruby haulapi.rb'";
+	print "Initialized haul module.\n";
 }
 
 sub version {
-	my $out = callHaul('version()')
-	print $out
+	my @out = __callHaul('version()');
+	print $out[0];
 }
 
-sub callHaul {
-	print $haul "Haul.$_0\n"
-	my @result = ()
-	while(<$haul>) {
-		print $_;	
+sub pull {
+	my @out = __callHaul("pull(\"$_[0]\", false)");
+	if($_[1] == 0) {
+		my $i = 0;
+		my $num = @out;
+		while($i < $num - 1) {
+			print $out[$i];
+			$i = $i + 1;
+		}
 	}
-	close $haul;
+}
+
+sub __callHaul {
+	my $temp = 'haul.txt';
+	my @result;
+	open OUTPUT, "| ruby haulapi.rb > $temp" || die $!;
+	print OUTPUT "Haul.$_[0]";
+	close OUTPUT;
+	open FILE, $temp;
+	my $line;
+	foreach $line (<FILE>) {
+		push(@result, $line);
+	}
+	close FILE;
+	unlink $temp;
+	return @result;
 }

@@ -17,15 +17,15 @@ def init():
 
 def version():
 	out = __callHaul('version()')
-	print "haul module v.{0} [via Python].".format(out[0])
+	print out[0]
 
-def pull(depfile='project.deps', quiet=False):
+def pull(depfile='haul.deps', quiet=False):
 	out = __callHaul('pull(\'{0}\', false)'.format(depfile))
 	if not quiet:
 		for o in out:
 			print o
 
-def push(depfile='project.deps', quiet=False):
+def push(depfile='haul.deps', quiet=False):
 	out = __callHaul('push(\'{0}\', false)'.format(depfile))
 	if not quiet:
 		print out
@@ -35,7 +35,7 @@ def __callHaul(method):
 	result = []
 	while True:
 		if haul.poll() is not None:
-			print 'haul module hung up. :('
+			print 'An error occured in haul.'
 			exit(0)
 
 		# Read one line, removing newline characters and trailing spaces.

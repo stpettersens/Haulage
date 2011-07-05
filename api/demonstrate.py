@@ -6,6 +6,5 @@
 import haul
 
 haul.init()
-haul.version()
-#haul.pull()
-
+#haul.version()
+haul.pull()
