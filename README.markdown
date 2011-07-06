@@ -18,7 +18,8 @@ To pull dependencies for a project from its dependencies file, do:
 haul module usage
 -----------------
 Haulage is powered by the `haul` Ruby module, which you can use in your
-own scripts or programs. API modules exist for Python and Perl [WIP] as well as Ruby.
+own scripts or programs. API modules exist for other languages such as Python or Perl,
+so that you can use haul with them in addition to Ruby.
 
 The same effect as in the Haulage usage example can be achieved in Python code with:
 
