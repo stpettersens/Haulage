@@ -16,12 +16,6 @@ $deps = []
 $libdir = nil
 $quiet = false
 
-# Database access configuration
-# Temporary. This will be recorded to a config file.
-DB_NAME = 'haulage_deps_db'
-DB_USER = 'haulage_agent'
-DB_PWD = '<encrypted pwd>'
-
 module Haul
 	def self.version()
 		return "haul module v. #{$version}."
