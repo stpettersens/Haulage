@@ -21,7 +21,7 @@ Haulage is powered by the `haul` Ruby module, which you can use in your
 own scripts or programs. API modules exist for other languages such as Python or Perl,
 so that you can use haul with them in addition to Ruby.
 
-The same effect as in the Haulage usage example can be achieved in Python code with:
+For example, the same effect as in the Haulage usage example can be achieved in Python code with:
 
     import haul # Import the Python API haul module.
     haul.init() # Initialize the haul module.
