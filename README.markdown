@@ -22,8 +22,9 @@ own scripts or programs. API modules exist for Python and Perl [WIP] as well as 
 
 The same effect as in the Haulage usage example can be achieved in Python code with:
 
-    import haul
-	haul.pull()
+    import haul # Import the Python API haul module.
+    haul.init() # Initialize the haul module.
+    haul.pull() # Pull dependencies from default file.
 
 (*haul.deps* is the defaultly seeked depedencies file.)
 
@@ -40,9 +41,10 @@ The following Ruby gems:
 * haul [core of haulage, included]
 * [json](http://rubygems.org/gems/json)
 * [mongo](http://rubygems.org/gems/mongo)
-* bison-ext
+* [bson](http://rubygems.org/gems/bson)
+* [bson_ext](http://rubygems.org/gems/bson_ext)
 
-Install with `[sudo] gem install json mongo bison-ext`
+Install with `[sudo] gem install [haul] json mongo bson bson_ext`
 
 License
 -------
