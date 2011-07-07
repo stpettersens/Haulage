@@ -1,9 +1,12 @@
 Gemfile
 Gemfile.lock
 LICENSE
+Manifest
 README.markdown
 Rakefile
 api/perl/haul.pl
 api/python/haul.py
 haul.deps
-Manifest
+haul.gemspec
+lib/haul.rb
+tasks/extra.rake
