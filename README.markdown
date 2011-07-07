@@ -39,13 +39,25 @@ Programs:
 
 The following Ruby gems:
 
-* haul [core of haulage, included]
+* [haul] [core haulage module]
+
+Which itself depends on:
+
 * [json](http://rubygems.org/gems/json)
 * [mongo](http://rubygems.org/gems/mongo)
 * [bson](http://rubygems.org/gems/bson)
 * [bson_ext](http://rubygems.org/gems/bson_ext)
 
-Install with `[sudo] gem install [haul] json mongo bson bson_ext`
+
+Installing
+----------
+You can install the `haulage` utility as a gem using:
+
+`[sudo] gem install haulage` (Coming soon)
+
+Or just the `haul` module itself:
+`[sudo] gem install haul` (WIP)
+
 
 License
 -------
