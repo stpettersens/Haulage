@@ -1,0 +1,5 @@
+source "http://rubygems.org"
+gem "json"
+gem "mongo"
+gem "bson"
+gem "bson_ext"
