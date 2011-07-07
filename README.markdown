@@ -13,7 +13,7 @@ Haulage usage
 
 To pull dependencies for a project from its dependencies file, do:
 
- `[ruby] haulage --pull project.deps`
+ `haulage --pull project.deps`
 
 haul module usage
 -----------------
@@ -35,30 +35,17 @@ Dependencies
 Programs:
 
 * [Ruby](http://www.ruby-lang.org) 1.9+
+* [RubyGems](http://rubygems.org/pages/download) 1.8.5+
 * [MongoDB](http://www.mongodb.org)
 
 The following Ruby gems:
-
-* [haul](http://rubygems.org/gems/haul) [core haulage module]
-
-Which itself depends on:
 
 * [json](http://rubygems.org/gems/json)
 * [mongo](http://rubygems.org/gems/mongo)
 * [bson](http://rubygems.org/gems/bson)
 * [bson_ext](http://rubygems.org/gems/bson_ext)
 
-
-Installing
-----------
-You can install the `haulage` utility as a gem using:
-
-`[sudo] gem install haulage` (Coming soon)
-
-Or just the `haul` module itself:
-
-`[sudo] gem install haul` (WIP)
-
+ Install with `[sudo] gem install json mongo bson bson_ext`
 
 License
 -------
