@@ -39,7 +39,7 @@ Programs:
 
 The following Ruby gems:
 
-* [haul] [core haulage module]
+* [haul](http://rubygems.org/gems/haul) [core haulage module]
 
 Which itself depends on:
 
@@ -56,6 +56,7 @@ You can install the `haulage` utility as a gem using:
 `[sudo] gem install haulage` (Coming soon)
 
 Or just the `haul` module itself:
+
 `[sudo] gem install haul` (WIP)
 
 
