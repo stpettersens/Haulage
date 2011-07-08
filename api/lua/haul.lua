@@ -13,7 +13,7 @@ rubyexec = 'ruby'
 module(..., package.seeall)
 
 -- version information.
-_VERSION = [[ haul Lua API module 1.0
+_VERSION = [[haul Lua API module 1.0
 Copyright (c) 2011 Sam Saint-Pettersen]]
 
 function init()
