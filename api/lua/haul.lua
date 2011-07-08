@@ -12,7 +12,7 @@ rubyexec = 'ruby'
 -- specify as module.
 module(..., package.seeall)
 
--- version iformation
+-- version information.
 _VERSION = [[ haul Lua API module 1.0
 Copyright (c) 2011 Sam Saint-Pettersen]]
 
