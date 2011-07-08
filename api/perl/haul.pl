@@ -5,8 +5,12 @@
 #
 # Released under the MIT/X11 License.
 #
+# TODO: Need to make this a proper Perl module.
 use strict;
 use warnings;
+
+# Globals
+my $rubyexec = 'ruby';
 
 sub init {
 	print "Initialized haul module.\n";
@@ -32,7 +36,7 @@ sub pull {
 sub __callHaul {
 	my $temp = 'haul.txt';
 	my @result;
-	open OUTPUT, "| ruby haulapi.rb > $temp" || die $!;
+	open OUTPUT, "| $rubyexec haulapi.rb > $temp" || die $!;
 	print OUTPUT "Haul.$_[0]";
 	close OUTPUT;
 	open FILE, $temp;

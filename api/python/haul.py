@@ -9,11 +9,12 @@ from subprocess import Popen, PIPE, STDOUT
 
 # Globals
 haul = None
+rubyexec = 'ruby'
 
 def init():
 	global haul
 	print "Initialized haul module."
-	haul = Popen(['ruby', 'haulapi.rb'], stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+	haul = Popen([rubyexec, 'haulapi.rb'], stdin=PIPE, stdout=PIPE, stderr=STDOUT)
 
 def version():
 	out = __callHaul('version()')
