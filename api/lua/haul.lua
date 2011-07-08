@@ -30,7 +30,7 @@ end
 function __callHaul(method)
 	local tmp = 'haul.txt'
 	local pipe = io.popen(rubyexec .. ' haulapi.rb > ' .. tmp, 'w')
-	pipe:write('Haul.' .. method .. '\n')
+	pipe:write('Haul.' .. method)
 	pipe:close()
 	pipe = io.open(tmp)
 	local result = pipe:read('*all')
