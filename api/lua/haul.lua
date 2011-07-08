@@ -6,8 +6,15 @@
 -- Released under the MIT/X11 License.
 --
 
--- Globals
+-- globals
 rubyexec = 'ruby'
+
+-- specify as module.
+module(..., package.seeall)
+
+-- version iformation
+_VERSION = [[ haul Lua API module 1.0
+Copyright (c) 2011 Sam Saint-Pettersen]]
 
 function init()
 	print('Initialized haul module.\n')
