@@ -44,7 +44,7 @@ class Haul {
 			// 0 => writable handle connected to child stdin.
 			// 1 => readble handle connected to child stdout.
 			// Any error output will be written to /dev/null.
-			fwrite($pipes[0], "Haul.$method\n");
+			fwrite($pipes[0], "Haul.$method");
 			fclose($pipes[0]);
 
 			$line = stream_get_contents($pipes[1]);
