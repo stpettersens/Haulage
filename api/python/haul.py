@@ -32,7 +32,7 @@ def push(depfile='haul.deps', quiet=False):
 		print out
 
 def __callHaul(method):
-	haul.stdin.write("Haul.{0}\n".format(method))
+	haul.stdin.write("Haul.{0}".format(method))
 	result = []
 	while True:
 		if haul.poll() is not None:
