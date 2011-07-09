@@ -1,3 +1,4 @@
 *.pyc
 *.gemspec
-pkg
+*.gem
+Manifest
