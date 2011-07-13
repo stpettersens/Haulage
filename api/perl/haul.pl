@@ -33,6 +33,18 @@ sub pull {
 	}
 }
 
+sub push {
+	my @out = __callHaul("push(\"$_[0]\", false)");
+	if($_[1] == 0) {
+		my $i = 0;
+		my $num = @out;
+		while($i < $num - 1) {
+			print $out[$i];
+			$i = $i + 1;
+		}
+	}
+}
+
 sub __callHaul {
 	my $temp = 'haul.txt';
 	my @result;

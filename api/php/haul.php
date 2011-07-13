@@ -35,6 +35,15 @@ class Haul {
 			}
 		}
 	}
+	public static function push($depfile='haul.deps', $quiet=FALSE) {
+		$out = self::callHaul("push('$depfile', false)");
+		if (!$quiet) {
+			foreach($out as $o) {
+				if($o == "[end]") break;
+				echo "$o\n";
+			}
+		}
+	}
 	private static function callHaul($method) {
 		$ruby = self::$rubyexec;
 		$process = proc_open("$ruby haulapi.rb", self::$descriptorspec, $pipes, self::$cwd, self::$env);

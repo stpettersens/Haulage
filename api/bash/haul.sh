@@ -7,7 +7,9 @@
 # Released under the MIT/X11 License.
 #
 
+# globals
 ruby="ruby"
+quiet=false
 
 function init {
 	echo "Initialized haul module."
@@ -18,11 +20,21 @@ function version {
 }
 
 function pull {
+	quiet = $2
 	__callHaul "pull('$1', false)"
 }
 
+function push {
+	quiet = $2
+	__callHaul "push('$1', false)"
+}
+
 function __callHaul {
-	echo "Haul.$1" | $ruby haulapi.rb
+	if $quiet then
+		echo > /dev/null "Haul.$1" | $ruby haulapi.rb
+	else
+		echo "Haul.$1" | $ruby haulapi.rb
+	fi
 }
 
 case $1 in
@@ -33,6 +45,9 @@ version)
 	version
 	;;
 pull)
-	pull $2
+	pull $2 $3
+	;;
+push)
+	push $2 $3
 	;;
 esac

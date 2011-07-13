@@ -29,8 +29,21 @@ function pull(depfile, quiet)
 	depfile = depfile or 'haul.deps'
 	quiet = quiet or false
 	local out = __callHaul('pull("' .. depfile .. '", false)')
-	for i, v in ipairs(out) do
-		print(v)
+	if not quiet then
+		for i, v in ipairs(out) do
+			print(v)
+		end
+	end
+end
+
+function push(depfile, quiet)
+	depfile = depfile or 'haul.deps'
+	quiet = quiet or false
+	local out = __callHaul('push("' .. depfile .. '", false)')
+	if not quiet then
+		for i, v in ipairs(out) do
+			print(v)
+		end
 	end
 end
 
