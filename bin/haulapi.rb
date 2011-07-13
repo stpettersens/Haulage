@@ -18,8 +18,8 @@ while cmd = STDIN.gets
 	else
 		# Evaluate command, send result to standard output.
 		print eval(cmd), "\n"
-		# Append [end] so that haul.xx module knows that is is the last line.
-		print "[end]\n"
+		# Append \r (carriage return) so that haul.xx module knows that is is the last line.
+		print "\r"
 		# Flush STDOUT to avoid buffering issues.
 		STDOUT.flush
 	end

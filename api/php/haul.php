@@ -30,7 +30,7 @@ class Haul {
 		$out = self::callHaul("pull('$depfile', false)");
 		if (!$quiet) {
 			foreach($out as $o) {
-				if($o == "[end]") break;
+				if($o =~ /\r/) break;
 				echo "$o\n";
 			}
 		}
@@ -39,7 +39,7 @@ class Haul {
 		$out = self::callHaul("push('$depfile', false)");
 		if (!$quiet) {
 			foreach($out as $o) {
-				if($o == "[end]") break;
+				if($o =~ /\r/) break;
 				echo "$o\n";
 			}
 		}

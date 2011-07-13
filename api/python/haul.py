@@ -6,6 +6,7 @@
 # Released under the MIT/X11 License.
 #
 from subprocess import Popen, PIPE, STDOUT
+import re
 
 # Globals
 haul = None
@@ -41,7 +42,7 @@ def __callHaul(method):
 
 		# Read one line, removing newline characters and trailing spaces.
 		line = haul.stdout.readline().rstrip()
-		if line == '[end]':
+		if re.match('\r', line):
 			break
 		result.append(line)
 	return result
