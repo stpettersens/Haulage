@@ -6,9 +6,9 @@ require 'fileutils'
 name = 'haul'
 version = '1.0test2'
 Echoe.new(name, version) do |p|
-	p.description		= "Haulage source code manager."
-	p.url				= "http://stpettersens.github.com/Haulage"		
-	p.email				= "s.stpettersen@gmail.com"
+	p.description = "Haulage source code manager."
+	p.url	      = "http://stpettersens.github.com/Haulage"		
+	p.email	      = "s.stpettersen@gmail.com"
 	p.ignore_pattern	= ["api/*"]
 	p.development_dependencies = ["echoe"]
 	p.runtime_dependencies = ["json","mongo", "bson_ext"]
