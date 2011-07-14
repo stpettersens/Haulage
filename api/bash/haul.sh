@@ -30,11 +30,7 @@ function push {
 }
 
 function __callHaul {
-	if $quiet then
-		echo > /dev/null "Haul.$1" | $ruby haulapi.rb
-	else
-		echo "Haul.$1" | $ruby haulapi.rb
-	fi
+	echo "Haul.$1" | $ruby haulapi.rb
 }
 
 case $1 in

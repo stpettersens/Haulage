@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 # 
 # Haulage 
 # Source code dependency manager.
@@ -8,7 +7,7 @@
 # Released under the MIT/X11 License.
 #
 require 'optparse'
-require './haul'
+require 'haul'
 
 # Globals
 $version = '1.0'
@@ -92,7 +91,7 @@ def showInfo()
 end
 
 def showVersion() 
-	puts "Haulage version #{$version} (haul module v.#{Haul.version})\n"
+	puts "Haulage version #{$version} (#{Haul.version()})\n"
 	exit
 end
 

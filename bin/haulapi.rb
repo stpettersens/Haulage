@@ -6,7 +6,7 @@
 # Code based on:
 # http://www.decalage.info/python/ruby_bridge
 #
-require './haul'
+require 'haul'
 
 # Read command from standard input.
 while cmd = STDIN.gets

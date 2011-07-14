@@ -13,7 +13,7 @@ class Haul {
 	private static $descriptorspec = array(
 		0 => array("pipe", "r"), // stdin is a pipe that the child will read from.
 		1 => array("pipe", "w"), // stdout is a pipe that the child will write to.
-		2 => array("file", "/dev/null", "w") // stderror is written to /dev/null.
+		2 => array("file", "haul_php_error.txt", "w") // stderror is written to 'haul_php_error.txt'.
 	);
 	private static $cwd = null;
 	private static $env = null;
