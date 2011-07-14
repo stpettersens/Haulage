@@ -36,6 +36,9 @@ module Haul
 		self.parseDeps(depfile, 2)
 	end
 	private
+	def self.method_missing(method)
+		puts "barfing sick!"
+	end
 	def self.parseDeps(depfile, signal) 
 		json = File.read(depfile)
 		parsed = JSON.parse(json)
