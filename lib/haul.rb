@@ -25,7 +25,8 @@ module Haul
 		if not $quiet
 			puts "Pulling dependencies defined in #{depfile}..."
 		end
-		self.parseDeps(depfile, 1)
+		r = self.parseDeps(depfile, 1)
+		return r
 
 	end
 	def self.push(depfile, quiet)
@@ -33,7 +34,8 @@ module Haul
 		if not $quiet
 			puts "Pushing dependencies defined in #{depfile}..."
 		end
-		self.parseDeps(depfile, 2)
+		r = self.parseDeps(depfile, 2)
+		return r
 	end
 	private
 	def self.method_missing(method)
@@ -63,6 +65,7 @@ module Haul
 			end
 			c = c + 1
 		end
+		return true
 	end
 	def self.pullOverHttp()
 		dlfile = open("#{$deps[0]['file']}", 'wb')

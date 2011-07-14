@@ -30,5 +30,6 @@ end
 task :cleanup => [:clobber] do
 	puts "Removing everything, including .gemspec"
 	FileUtils.rm("Manifest")
+	FileUtils.rm("#{name}-#{version}.gem")
 	FileUtils.rm("#{name}.gemspec")
 end
