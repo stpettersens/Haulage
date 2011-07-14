@@ -10,12 +10,11 @@ import re
 
 # Globals
 haul = None
-rubyexec = 'ruby'
 
 def init():
 	global haul
 	print "Initialized haul module."
-	haul = Popen([rubyexec, 'haulapi.rb'], stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+	haul = Popen(['haulapi.rb'], stdin=PIPE, stdout=PIPE, stderr=STDOUT)
 
 def version():
 	out = __callHaul('version()')
@@ -33,7 +32,7 @@ def push(depfile='haul.deps', quiet=False):
 		print out
 
 def __callHaul(method):
-	haul.stdin.write("Haul.{0}".format(method))
+	haul.stdin.write("Haul.{0}\n".format(method))
 	result = []
 	while True:
 		if haul.poll() is not None:
@@ -42,7 +41,7 @@ def __callHaul(method):
 
 		# Read one line, removing newline characters and trailing spaces.
 		line = haul.stdout.readline().rstrip()
-		if re.match('\r', line):
+		if line == "\r":
 			break
 		result.append(line)
 	return result

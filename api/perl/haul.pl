@@ -9,9 +9,6 @@
 use strict;
 use warnings;
 
-# Globals
-my $rubyexec = 'ruby';
-
 sub init {
 	print "Initialized haul module.\n";
 }
@@ -33,7 +30,7 @@ sub pull {
 	}
 }
 
-sub push {
+sub push_ {
 	my @out = __callHaul("push(\"$_[0]\", false)");
 	if($_[1] == 0) {
 		my $i = 0;
@@ -48,7 +45,7 @@ sub push {
 sub __callHaul {
 	my $temp = 'haul.txt';
 	my @result;
-	open OUTPUT, "| $rubyexec haulapi.rb > $temp" || die $!;
+	open OUTPUT, "| haulapi.rb > $temp" || die $!;
 	print OUTPUT "Haul.$_[0]";
 	close OUTPUT;
 	open FILE, $temp;

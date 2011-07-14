@@ -8,7 +8,6 @@
 #
 
 # globals
-ruby="ruby"
 quiet=false
 
 function init {
@@ -30,7 +29,7 @@ function push {
 }
 
 function __callHaul {
-	echo "Haul.$1" | $ruby haulapi.rb
+	echo "Haul.$1" | haulapi.rb
 }
 
 case $1 in

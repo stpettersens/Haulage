@@ -5,4 +5,4 @@
 import haul
 
 haul.init()
-haul.pull()
+haul.version()

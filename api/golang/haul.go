@@ -13,9 +13,6 @@ import (
 	"bufio"
 )
 
-// Globals.
-var rubyexec="ruby"
-
 func Init() {
 	fmt.Print("Initialized haul module.\n")
 }
@@ -33,13 +30,13 @@ func Pull(depfile string, quiet bool) {
 }
 
 func callHaul(method string) string {
-	c := exec.Command(rubyexec, "haulapi.rb")
+	c := exec.Command("haulapi.rb")
 	stdin, _ := c.StdinPipe()
 	stdout, _ := c.StdoutPipe()
 	c.Start()
 	stdin.Write([]byte(fmt.Sprintf("Haul.%s", method)))
 	stdin.Close()
 	outbr := bufio.NewReader(stdout)
-	result, _ := outbr.ReadSlice(13) // Stop at CR (carriage return) character.
+	result, _ := outbr.ReadSlice(13) // Stop at CR (carriage return) character [ASCII 13].
 	return string(result)
 }

@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 #
 # Haul API module
 # Utilize haul module with languages
@@ -18,7 +19,7 @@ while cmd = STDIN.gets
 	else
 		# Evaluate command, send result to standard output.
 		print eval(cmd), "\n"
-		# Append \r (carriage return) so that haul.xx module knows that is is the last line.
+		# Append special character so that haul.xx module knows that is is the last line.
 		print "\r"
 		# Flush STDOUT to avoid buffering issues.
 		STDOUT.flush

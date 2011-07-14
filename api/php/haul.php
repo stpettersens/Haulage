@@ -9,11 +9,10 @@ Released under the MIT/X11 License.
 
 class Haul {
 	// Members
-	private static $rubyexec = 'ruby';
 	private static $descriptorspec = array(
 		0 => array("pipe", "r"), // stdin is a pipe that the child will read from.
 		1 => array("pipe", "w"), // stdout is a pipe that the child will write to.
-		2 => array("file", "haul_php_error.txt", "w") // stderror is written to 'haul_php_error.txt'.
+		2 => array("file", "/dev/null", "w") // stderror is written to '/dev/null'.
 	);
 	private static $cwd = null;
 	private static $env = null;
@@ -30,7 +29,6 @@ class Haul {
 		$out = self::callHaul("pull('$depfile', false)");
 		if (!$quiet) {
 			foreach($out as $o) {
-				if($o =~ /\r/) break;
 				echo "$o\n";
 			}
 		}
@@ -39,14 +37,12 @@ class Haul {
 		$out = self::callHaul("push('$depfile', false)");
 		if (!$quiet) {
 			foreach($out as $o) {
-				if($o =~ /\r/) break;
 				echo "$o\n";
 			}
 		}
 	}
 	private static function callHaul($method) {
-		$ruby = self::$rubyexec;
-		$process = proc_open("$ruby haulapi.rb", self::$descriptorspec, $pipes, self::$cwd, self::$env);
+		$process = proc_open("haulapi.rb", self::$descriptorspec, $pipes, self::$cwd, self::$env);
 
 		if(is_resource($process)) {
 			// $pipes now look like this:

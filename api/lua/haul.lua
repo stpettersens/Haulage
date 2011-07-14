@@ -6,9 +6,6 @@
 -- Released under the MIT/X11 License.
 --
 
--- globals
-rubyexec = 'ruby'
-
 -- specify as module.
 module(..., package.seeall)
 
@@ -17,7 +14,7 @@ _VERSION = [[haul Lua API module 1.0
 Copyright (c) 2011 Sam Saint-Pettersen]]
 
 function init()
-	print('Initialized haul module.\n')
+	print('Initialized haul module.')
 end
 
 function version()
@@ -49,7 +46,7 @@ end
 
 function __callHaul(method)
 	local tmp = 'haul.txt'
-	local pipe = io.popen(rubyexec .. ' haulapi.rb > ' .. tmp, 'w')
+	local pipe = io.popen('haulapi.rb > ' .. tmp, 'w')
 	pipe:write('Haul.' .. method)
 	pipe:close()
 	pipe = io.open(tmp)

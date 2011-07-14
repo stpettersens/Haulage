@@ -5,4 +5,5 @@
 require 'haul'
 
 haul.init()
+haul.version()
 haul.pull()

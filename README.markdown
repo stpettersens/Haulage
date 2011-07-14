@@ -38,14 +38,13 @@ Programs:
 * [RubyGems](http://rubygems.org/pages/download) 1.8.5+
 * [MongoDB](http://www.mongodb.org)
 
-The following Ruby gems:
+The following Ruby gems, which should be installed automatically::
 
 * [json](http://rubygems.org/gems/json)
 * [mongo](http://rubygems.org/gems/mongo)
-* [bson](http://rubygems.org/gems/bson)
 * [bson_ext](http://rubygems.org/gems/bson_ext)
 
- Install with `[sudo] gem install json mongo bson bson_ext`
+Otherwise, install with `[sudo] gem install json mongo bson_ext`
 
 License
 -------
