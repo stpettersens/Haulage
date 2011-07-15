@@ -7,13 +7,11 @@
 # Released under the MIT/X11 License.
 #
 require 'optparse'
-require 'growl'
 require 'haul'
 
 # Globals
 $version = '1.0'
 $quiet = false
-$growl = false
 
 def main()
 	if ARGV.length == 0
@@ -22,7 +20,7 @@ def main()
 	options = {}
 	optparse = OptionParser.new do|opts|
 		# Set banner, displayed at the top of help screen.
-		opts.banner = "Usage: #{$0} [-h|-v][--silent --growl --pull|--push FILE.DEPS]"
+		opts.banner = "Usage: #{$0} [-h|-v][--silent --pull|--push FILE.DEPS]"
 
 		# Define the options and what they do.
 		opts.on('-h', '--help', 'Display this information and exit.') do
@@ -39,18 +37,10 @@ def main()
 			options[:silent] = true
 			$quiet = options[:silent]
 		end
-		options[:growl] = false
-		opts.on('-g', '--growl', 'Send task complete/fail notifications via Growl.') do
-			options[:growl] = true
-			$growl = options[:growl]
-		end
 		options[:pull] = nil
 		opts.on('-p', '--pull FILE.DEPS', 'Pull dependencies from FILE.DEPS.') do|file|
 			options[:pull] = file
 			pullDeps(options[:pull])
-		end
-		opts.on('-d', '--pulld', 'Pull depedencies from HAUL.DEPS.') do
-			pullDeps('haul.deps')
 		end
 		options[:push] = nil
 		opts.on('-q', '--push FILE.DEPS', 'Push dependencies from FILE.DEPS to db.') do|file|
