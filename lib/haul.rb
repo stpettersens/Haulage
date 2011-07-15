@@ -25,22 +25,16 @@ module Haul
 		if not $quiet
 			puts "Pulling dependencies defined in #{depfile}..."
 		end
-		r = self.parseDeps(depfile, 1)
-		return r
-
+		self.parseDeps(depfile, 1)
 	end
 	def self.push(depfile, quiet)
 		$quiet = quiet
 		if not $quiet
 			puts "Pushing dependencies defined in #{depfile}..."
 		end
-		r = self.parseDeps(depfile, 2)
-		return r
+		self.parseDeps(depfile, 2)
 	end
 	private
-	def self.method_missing(method)
-		puts "barfing sick!"
-	end
 	def self.parseDeps(depfile, signal) 
 		json = File.read(depfile)
 		parsed = JSON.parse(json)
@@ -65,7 +59,6 @@ module Haul
 			end
 			c = c + 1
 		end
-		return true
 	end
 	def self.pullOverHttp()
 		dlfile = open("#{$deps[0]['file']}", 'wb')

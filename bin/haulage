@@ -54,13 +54,7 @@ end
 
 def pullDeps(depfile)
 	if isFile(depfile)
-		r = Haul.pull(depfile, $quiet)
-		#if r and $growl
-		Growl.notify do |n|
-			n.message = "Sucessfully pulled depedencies from #{depfile}."
-			n.icon = :jpeg
-		end
-		#end
+		Haul.pull(depfile, $quiet)
 	else
 		badFile(depfile)
 	end
@@ -68,7 +62,7 @@ end
 
 def pushDeps(depfile)
 	if isFile(depfile)
-		r = Haul.push(depfile, $quiet)
+		Haul.push(depfile, $quiet)
 	else 
 		badFile(depfile)
 	end
