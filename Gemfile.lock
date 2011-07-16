@@ -19,6 +19,9 @@ GEM
     rdoc (3.8)
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
+    sys-uname (0.8.5)
+    whereis (1.0)
+      sys-uname
 
 PLATFORMS
   ruby
@@ -28,3 +31,5 @@ DEPENDENCIES
   echoe
   json
   mongo
+  sys-uname
+  whereis

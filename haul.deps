@@ -1,21 +1,27 @@
 {
 
 	"preamble": [
-		{ "count": 2 },
+		{ "count": 3 },
 		{ "lib-dir": "lib" }
 	],
 
 	"dependency1": [
 		{ "file": "txtrevise" },
-		{ "type": 1 },
+		{ "type": "exec" },
 		{ "http-get": "http://www.something.com" },
 		{ "apt-get": "txtrevise" }
 	],
 
 	"dependency2": [
 		{ "file": "json_simple-1.1.jar" },
-		{ "type": 2 },
+		{ "type": "std},
 		{ "http-get": "http://json-simple.googlecode.com/files/json_simple-1.1.jar" },
 		{ "apt-get": "N/A" }
+	]
+
+	"dependency3": [
+		{ "file": "a" },
+		{ "type": "gem" },
+		{ "gem-get": "a" }
 	]
 }

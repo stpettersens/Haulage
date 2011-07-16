@@ -9,11 +9,13 @@ require 'rubygems'
 require 'json'
 require 'open-uri'
 require 'mongo'
+require 'sys/uname'
+require 'whereis'
+include Sys
 
 # Globals
 $version = '1.0'
 $deps = []
-$libdir = nil
 $quiet = false
 
 module Haul
@@ -25,17 +27,17 @@ module Haul
 		if not $quiet
 			puts "Pulling dependencies defined in #{depfile}..."
 		end
-		self.parseDeps(depfile, 1)
+		self.parseDeps(depfile, 1.0)
 	end
 	def self.push(depfile, quiet)
 		$quiet = quiet
 		if not $quiet
 			puts "Pushing dependencies defined in #{depfile}..."
 		end
-		self.parseDeps(depfile, 2)
+		self.parseDeps(depfile, 2.0)
 	end
 	private
-	def self.parseDeps(depfile, signal) 
+	def self.parseDeps(depfile) 
 		json = File.read(depfile)
 		parsed = JSON.parse(json)
 		preamble = parsed['preamble']
@@ -48,9 +50,15 @@ module Haul
 			index = "dependency#{c}"
 			$deps = []
 			$deps = parsed[index]
-			if signal == 1
+			signal, os = self.performChecks()
+			signal case
+			when 1.1
 				self.pullOverHttp()
-			elsif signal == 2
+			when 1.2
+				self.pullOverAptGet()
+			when 1.3
+				self.pullOverGems(os)
+			when 2.0
 				self.pushToDB()
 			else
 				if not $quiet
@@ -74,6 +82,13 @@ module Haul
 			puts "Retrieved \"#{$deps[0]['file']}\" via Apt-Get."
 		end
 	end
+	def self.pullOverGems(os)
+		sudo = ''
+		if os.match(/.*n[i|u]x/)
+			sudo = 'sudo'
+		end
+		system("#{sudo} gem install #{deps[4]['gem-get']}")
+	end
 	def self.pushToDB()
 		#...
 	end
@@ -81,9 +96,16 @@ module Haul
 		return 'an array'
 	end
 	def self.detectSystem()
-		return 'an os family'
+		return Uname.uname['sysname']
 	end
 	def self.checkExists(file, type)
-		return false
+		if type == 'std'
+			status = File.file? file
+		elsif type == 'gem'
+			#...
+		elsif type == 'exec'
+			status = Whereis.boolean(file)
+		end
+		return status
 	end
 end
