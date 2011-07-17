@@ -10,8 +10,8 @@ Echoe.new(name, version) do |p|
 	p.url	      = "http://stpettersens.github.com/Haulage"		
 	p.email	      = "s.stpettersen@gmail.com"
 	p.ignore_pattern	= ["api/*"]
-	p.development_dependencies = ["echoe"]
-	p.runtime_dependencies = ["json","mongo", "bson_ext"]
+	p.development_dependencies = []
+	p.runtime_dependencies = ["json","mongo", "bson_ext", "sys-uname", "whereis"]
 end
 
 task :makegem => [:build_gemspec] do
@@ -30,6 +30,5 @@ end
 task :cleanup => [:clobber] do
 	puts "Removing everything, including .gemspec"
 	FileUtils.rm("Manifest")
-	FileUtils.rm("#{name}-#{version}.gem")
 	FileUtils.rm("#{name}.gemspec")
 end

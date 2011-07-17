@@ -5,7 +5,6 @@
 #
 # Released under the MIT/X11 License.
 #
-require 'rubygems'
 require 'json'
 require 'open-uri'
 require 'mongo'
@@ -96,7 +95,7 @@ module Haul
 		return 'an array'
 	end
 	def self.detectSystem()
-		return Uname.uname['sysname']
+		return Uname.sysname
 	end
 	def self.checkExists(file, type)
 		if type == 'std'
