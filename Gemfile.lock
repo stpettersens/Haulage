@@ -20,7 +20,7 @@ GEM
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
     sys-uname (0.8.5)
-    whereis (1.0)
+    whereis (1.1.2)
       sys-uname
 
 PLATFORMS

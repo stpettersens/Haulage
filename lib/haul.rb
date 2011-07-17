@@ -36,7 +36,7 @@ module Haul
 		self.parseDeps(depfile, 2.0)
 	end
 	private
-	def self.parseDeps(depfile) 
+	def self.parseDeps(depfile, signal)
 		json = File.read(depfile)
 		parsed = JSON.parse(json)
 		preamble = parsed['preamble']
@@ -49,19 +49,17 @@ module Haul
 			index = "dependency#{c}"
 			$deps = []
 			$deps = parsed[index]
-			signal, os = self.performChecks()
-			signal case
-			when 1.1
-				self.pullOverHttp()
-			when 1.2
-				self.pullOverAptGet()
-			when 1.3
-				self.pullOverGems(os)
-			when 2.0
-				self.pushToDB()
+			sig, os, exists = self.performChecks(signal)
+			if not exists or sig == 2.0
+				case sig
+				when 1.1
+					self.pullOverHttp()
+				when 2.0
+					self.pushToDB()
+				end
 			else
 				if not $quiet
-					puts "Skipping dependency: #{deps[0]['file']}..."
+					puts "Skipping dependency: \"#{$deps[0]['file']}\"..."
 				end
 			end
 			c = c + 1
@@ -86,25 +84,30 @@ module Haul
 		if os.match(/.*n[i|u]x/)
 			sudo = 'sudo'
 		end
-		system("#{sudo} gem install #{deps[4]['gem-get']}")
+		system("#{sudo} gem install #{$deps[4]['gem-get']}")
 	end
 	def self.pushToDB()
 		#...
 	end
-	def self.performChecks()
-		return 'an array'
+	def self.performChecks(signal)
+		if signal < 2.0
+			signal = 1.1
+		end
+		os = self.detectSystem()
+		exists = self.checkExists($deps[0]['file'], $deps[1]['type'])
+		return [signal, os, exists]
 	end
 	def self.detectSystem()
 		return Uname.sysname
 	end
 	def self.checkExists(file, type)
 		if type == 'std'
-			status = File.file? file
+			exists = File.file? file
 		elsif type == 'gem'
 			#...
 		elsif type == 'exec'
-			status = Whereis.boolean(file)
+			exists = Whereis.boolean(file)
 		end
-		return status
+		return exists
 	end
 end
