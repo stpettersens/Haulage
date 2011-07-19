@@ -4,7 +4,7 @@ require 'echoe'
 require 'fileutils'
 
 name = 'haul'
-version = '1.0test2'
+version = '1.0'
 Echoe.new(name, version) do |p|
 	p.description = "Haulage source code manager."
 	p.url	      = "http://stpettersens.github.com/Haulage"		
@@ -19,9 +19,9 @@ task :makegem => [:build_gemspec] do
 	system("gem build #{name}.gemspec")
 end
 
-task :instgem do
-	puts "Installing gem..."
-	system("gem install #{name}-#{version}")
+task :instgem, :env do |t, args|
+	puts "Installing gem to #{args.env}..."
+	system("#{args.env} -S gem install #{name}-#{version}")
 end
 
 task :all => [:makegem, :instgem, :cleanup] do
