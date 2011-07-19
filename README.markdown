@@ -13,7 +13,7 @@ Haulage usage
 
 To pull dependencies for a project from its dependencies file, do:
 
- `haulage --pull project.deps`
+ `haulage --pull haul.deps`
 
 haul module usage
 -----------------
