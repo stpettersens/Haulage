@@ -11,7 +11,7 @@ Echoe.new(name, version) do |p|
 	p.email	      = "s.stpettersen@gmail.com"
 	p.ignore_pattern	= ["api/*"]
 	p.development_dependencies = []
-	p.runtime_dependencies = ["json","mongo", "bson_ext", "sys-uname", "whereis"]
+	p.runtime_dependencies = ["json","mongo", "uname", "whereis"]
 end
 
 task :makegem => [:build_gemspec] do

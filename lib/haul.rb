@@ -8,9 +8,8 @@
 require 'json'
 require 'open-uri'
 require 'mongo'
-require 'sys/uname'
+require 'uname'
 require 'whereis'
-include Sys
 
 # Globals
 $version = '1.0'
@@ -18,9 +17,26 @@ $deps = []
 $quiet = false
 
 module Haul
+	module ClassMethods
+      def method_missing(method)
+      	methods = ['version', 'pull', 'push']
+        puts "Method: \"#{method}\" does not exist."
+        puts "Available public methods:"
+        for m in methods
+        	puts m
+        end
+      end
+    end
+    extend ClassMethods
+
+    def self.included(mod)
+    	mod.extend ClassMethods
+    end
+
 	def self.version()
 		return "haul module v. #{$version}."
 	end
+
 	def self.pull(depfile, quiet)
 		$quiet = quiet
 		if not $quiet
@@ -28,6 +44,7 @@ module Haul
 		end
 		self.parseDeps(depfile, 1.0)
 	end
+
 	def self.push(depfile, quiet)
 		$quiet = quiet
 		if not $quiet
@@ -35,6 +52,7 @@ module Haul
 		end
 		self.parseDeps(depfile, 2.0)
 	end
+
 	private
 	def self.parseDeps(depfile, signal)
 		json = File.read(depfile)
@@ -65,6 +83,7 @@ module Haul
 			c = c + 1
 		end
 	end
+
 	def self.pullOverHttp()
 		dlfile = open("#{$deps[0]['file']}", 'wb')
 		dlfile.write(open("#{$deps[2]['http-get']}").read)
@@ -73,12 +92,14 @@ module Haul
 			puts "Retrieved \"#{$deps[0]['file']}\" via Http."
 		end
 	end
+
 	def self.pullOverAptGet()
 		system("sudo apt-get install #{$deps[3]['apt-get']}")
 		if not $quiet
 			puts "Retrieved \"#{$deps[0]['file']}\" via Apt-Get."
 		end
 	end
+
 	def self.pullOverGems(os)
 		sudo = ''
 		if os.match(/.*n[i|u]x/)
@@ -86,9 +107,11 @@ module Haul
 		end
 		system("#{sudo} gem install #{$deps[4]['gem-get']}")
 	end
+
 	def self.pushToDB()
 		#...
 	end
+
 	def self.performChecks(signal)
 		if signal < 2.0
 			signal = 1.1
@@ -97,9 +120,11 @@ module Haul
 		exists = self.checkExists($deps[0]['file'], $deps[1]['type'])
 		return [signal, os, exists]
 	end
+
 	def self.detectSystem()
 		return Uname.sysname
 	end
+
 	def self.checkExists(file, type)
 		if type == 'std'
 			exists = File.file? file
